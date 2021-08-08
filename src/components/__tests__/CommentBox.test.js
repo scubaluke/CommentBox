@@ -32,8 +32,10 @@ it('submits form and clears text area', () => {
         target: { value: 'new comment' }
     })
     wrapped.update();
-    wrapped.find('button').simulate('click')
+    expect(wrapped.find('textarea').prop('value')).toEqual('new comment')
+
+    wrapped.find('form').simulate('submit')
     wrapped.update()
-    expect(wrapped.find('textarea')).toEqual({})
+    expect(wrapped.find('textarea').prop('value')).toEqual('')
 })
 
