@@ -7,6 +7,8 @@ import * as actions from 'actions'
 export default function CommentBox() {
     const [comment, setComment] = useState('')
     const dispatch = useDispatch()
+    const comments = useSelector(state => state.comments)
+    console.log(comments);
 
     const handleSubmit = (e) => {
         e.preventDefault()
