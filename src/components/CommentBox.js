@@ -1,12 +1,17 @@
 import React, { useState } from 'react'
+import { useDispatch, useSelector} from 'react-redux' 
+// import commentsReducer from 'reducers/comments'
+import { saveComment } from 'actions'
+import * as actions from 'actions'
 
 export default function CommentBox() {
     const [comment, setComment] = useState('')
+    const dispatch = useDispatch()
 
     const handleSubmit = (e) => {
         e.preventDefault()
 
-        //todo: call an action creator
+        dispatch(saveComment(comment))
 
         setComment('')
     }
