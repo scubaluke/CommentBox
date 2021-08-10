@@ -8,7 +8,7 @@ beforeEach(() => {
     moxios.install()
     moxios.stubRequest('http://jsonplaceholder.typicode.com/comments', {
         status: 200,
-        data: [{ name: 'fetched #1' }, { name: 'fetched #2'}]
+        response: [{ name: 'fetched #1' }, { name: 'fetched #2'}]
     })
 })
 
@@ -27,10 +27,11 @@ it('can fetch a list of comments and display them', (done) => {
         wrapped.find('.fetch-comments').simulate('click')
         wrapped.update()
     // expect to find a list of comments! (after tinny delay)
-    setTimeout(() => {
+    moxios.wait(() => {
         expect(wrapped.find('li').length).toEqual(2)
+
+    })
         
-    }, 50);
     done()
     wrapped.unmount()
 
