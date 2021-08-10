@@ -22,5 +22,4 @@ it('creates one LI per comment', () => {
 it('renders the comment to the screen', () => {
     expect(wrapped.render().text()).toContain('comment 1')
     expect(wrapped.render().text()).toContain('comment 2')
-
 }) 

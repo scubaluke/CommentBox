@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux' 
-import { saveComment } from 'actions'
+import { saveComment, fetchComments } from 'actions'
 
 export default function CommentBox() {
     const [comment, setComment] = useState('')
@@ -13,16 +13,24 @@ export default function CommentBox() {
 
         setComment('')
     }
+
+   const handleFetchComments = () => {
+     const comments =  dispatch(fetchComments())
+     console.log(comments);
+   }
     return (
-        <form onSubmit={handleSubmit} >
-            <h4>Add a Comment</h4>
-            <textarea 
-                onChange={e => setComment(e.target.value)}
-                value={comment} 
-            />
-            <div>
-                <button>Submit Comment</button>
-            </div>
-        </form>
+        <div>
+            <form onSubmit={handleSubmit} >
+                <h4>Add a Comment</h4>
+                <textarea 
+                    onChange={e => setComment(e.target.value)}
+                    value={comment} 
+                />
+                <div>
+                    <button>Submit Comment</button>
+                </div>
+            </form>
+            <button onClick={handleFetchComments} >Fetch Comments</button>
+        </div>
     )
 }
