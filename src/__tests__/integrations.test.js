@@ -16,7 +16,7 @@ afterEach(() => {
     moxios.uninstall()
 })
 
-it('can fetch a list of comments and display them', () => {
+it('can fetch a list of comments and display them', (done) => {
     // render the entire app 
     const wrapped = mount(
         <Root>
@@ -25,13 +25,13 @@ it('can fetch a list of comments and display them', () => {
     )
     // find fetch comments button and click import PropTypes from 'prop-types'
         wrapped.find('.fetch-comments').simulate('click')
-        console.log(wrapped.find('.fetch-comments'));
-    
+        wrapped.update()
     // expect to find a list of comments! (after tinny delay)
-   
     setTimeout(() => {
         expect(wrapped.find('li').length).toEqual(2)
-
+        
     }, 50);
+    done()
+    wrapped.unmount()
 
 })
