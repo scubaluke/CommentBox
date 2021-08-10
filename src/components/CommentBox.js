@@ -15,9 +15,9 @@ export default function CommentBox() {
     }
 
    const handleFetchComments = () => {
-     const comments =  dispatch(fetchComments())
-     console.log(comments);
+     dispatch(fetchComments())
    }
+
     return (
         <div>
             <form onSubmit={handleSubmit} >
@@ -30,7 +30,7 @@ export default function CommentBox() {
                     <button>Submit Comment</button>
                 </div>
             </form>
-            <button onClick={handleFetchComments} >Fetch Comments</button>
+            <button className='fetch-comments' onClick={handleFetchComments} >Fetch Comments</button>
         </div>
     )
 }
