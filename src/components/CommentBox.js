@@ -1,10 +1,18 @@
-import React, { useState } from 'react'
-import { useDispatch } from 'react-redux' 
+import React, { useState, useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux' 
 import { saveComment, fetchComments } from 'actions'
 
-export default function CommentBox() {
+export default function CommentBox({history}) {
+    const auth = useSelector(state => state.auth)
     const [comment, setComment] = useState('')
     const dispatch = useDispatch()
+
+    useEffect(() => {
+      if(!auth) {
+          console.log('i need to leave');
+          history.push('/')
+      }
+    }, [auth])
  
     const handleSubmit = (e) => {
         e.preventDefault()

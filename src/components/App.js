@@ -1,22 +1,23 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
-
+import { useSelector, useDispatch } from 'react-redux'
 import { Route, Link } from 'react-router-dom'
 import CommentList from 'components/CommentList'
 import CommentBox from 'components/CommentBox'
+import { changeAuth } from 'actions'
 
 export default function App() {
     const auth = useSelector(state => state.auth)
-    console.log(auth);
+    const dispatch = useDispatch()
+
 
     const renderButton = () => {
         if(auth) {
             return(
-                <button>Sign Out</button>
+                <button onClick={() => dispatch(changeAuth(false))} >Sign Out</button>
             )
         } else {
             return (
-                <button>Sign In</button>
+                <button onClick={() => dispatch(changeAuth(true))} >Sign In</button>
             )
         }
     }
