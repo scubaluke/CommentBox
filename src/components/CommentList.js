@@ -6,8 +6,11 @@ export default function CommentList() {
     const renderedComments = comments.map(comment => <li key={comment} >{comment}</li>)
     
     return (
-        <ul>
-            {renderedComments}
-        </ul>
+        <>
+            <h4>Comment List</h4>
+            <ul>
+                {renderedComments}
+            </ul>
+        </>
     )
 }
